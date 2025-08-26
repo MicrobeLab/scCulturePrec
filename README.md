@@ -36,7 +36,7 @@ Use `scCulturePrec -h` to print help message:
         dl-model            Siamese network: training, encoding feature vectors,
                             matching (default)
 
-### Positive and negative sample pairs
+### Generation of Positive and Negative Sample Pairs for Training
 
 Use `scCulturePrec create-pair -h` to print help message:
 
@@ -54,7 +54,7 @@ Use `scCulturePrec create-pair -h` to print help message:
 
 Input data are provided as NumPy arrays, with each array containing samples from one taxon, shaped as `[number_of_samples, number_of_features]`. The morphological features and spectral features are concatenated along the second axis of the array.
 
-### Deep neural network
+### Training and Prediction of the Deep Neural Network
 
 Use `scCulturePrec dl-model -h` to print help message:
 
@@ -94,7 +94,7 @@ Use `scCulturePrec dl-model -h` to print help message:
 
 The module operates in matching mode by default, which involves obtaining distances to reference samples. To switch to training and encoding modes, use the `--train` and `--encode` options.
 
-### Elastic net model
+### Training and Prediction of the Elastic Net Model
 
 Use `scCulturePrec elastic-net -h` to print help message:
 

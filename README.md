@@ -13,13 +13,14 @@ The **scCulturePrec** modelling pipeline comprises two parts: (1) extracting fea
 
 
 
-
 ## Installation
 
-`scCulturePrec` is easily installed from the GitHub repository:
+`scCulturePrec` can be easily installed from the GitHub repository:
 
     git clone https://github.com/MicrobeLab/scCulturePrec.git
     cd scCulturePrec
+    conda env create -f environment.yml
+    conda activate scCulturePrec
     pip install -e .
 
 ## Usage

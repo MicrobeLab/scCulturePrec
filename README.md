@@ -1,6 +1,11 @@
-# scCulturePrec
+<img width="432" height="110" alt="image" src="https://github.com/user-attachments/assets/a1809eda-e924-455d-a966-8a54866cc303" /># scCulturePrec
 
-An easy-to-use Python package implementing the machine learning framework presented in "Precision culturomics enabled by unlabeled single-cell morphology and Raman spectra"
+An easy-to-use Python package implementing the machine learning framework presented in "Precision culturomics enabled by unlabeled single-cell morphology and Raman spectra". The scCulturePrec framework enables the taxonomic classification of individual microbial cells based on their morphology and/or Raman spectra. This technology powers precision culturomics for complex microbiomes and other applications.
+
+The scCulturePrec modelling pipeline comprises two parts: (1) extracting feature vectors that minimize distances between cells of the same taxon while maximizing distances between cells of different taxa, using single-cell morphology and Raman spectra with a deep neural network, and (2) determining whether a cell belongs to the desired taxon by comparing the distance between its feature vector and those of reference cells. Feature vectors of reference cells are calculated using the trained network and stored in a reference library. Distances to multiple reference cells of a specific taxon are integrated using multivariable logistic regression to predict whether a cell belongs to that taxon. Contrastive learning is adopted to extract feature vectors from microbial single-cell morphological and Raman spectral data. 
+
+The microbial cells used for training are organized into positive pairs (cells from the same taxon) and negative pairs (cells from different taxa). The two cells are mapped into an embedding space using an identical deep neural network. Contrastive loss encourages the model to learn an embedding space where cells from the same taxon are close together, while cells from different taxa are far apart. After training, the cells used for training were fed into the trained network to extract feature vectors, which constitute a reference library with each taxon represented by multiple cells. Once models are trained, scCulturePrec operates in prediction mode to classify new, single cells. Similar to the training process, feature vectors are extracted from the morphological and Raman spectral data of new cells encountered in microbiome samples. The distances of the feature vectors between multiple reference cells of a taxon and a new cell are used as predictors in a regularized multiple linear regression model, such as elastic net, to predict whether the new cell belongs to that taxon.
+
 
 ## Installation
 
@@ -23,7 +28,7 @@ Use `scCulturePrec -h` to print help message:
         dl-model            Siamese network: training, encoding feature vectors,
                             matching (default)
 
-### (1) Positive and negative sample pairs
+### Positive and negative sample pairs
 
 Use `scCulturePrec create-pair -h` to print help message:
 
@@ -41,7 +46,7 @@ Use `scCulturePrec create-pair -h` to print help message:
 
 Input data are provided as NumPy arrays, with each array containing samples from one taxon, shaped as `[number_of_samples, number_of_features]`. The morphological features and spectral features are concatenated along the second axis of the array.
 
-### (2) Deep neural network
+### Deep neural network
 
 Use `scCulturePrec dl-model -h` to print help message:
 
@@ -81,7 +86,7 @@ Use `scCulturePrec dl-model -h` to print help message:
 
 The module operates in matching mode by default, which involves obtaining distances to reference samples. To switch to training and encoding modes, use the `--train` and `--encode` options.
 
-### (3) Elastic net model
+### Elastic net model
 
 Use `scCulturePrec elastic-net -h` to print help message:
 
@@ -107,4 +112,4 @@ The module operates in prediction mode by default. To switch to training mode, u
 
 Bugs and difficulties in using `scCulturePrec` are welcome on [the issue tracker](https://github.com/MicrobeLab/scCulturePrec/issues).
 
-Example data sets and models are available [here]().
+Example data sets and models are available [here](https://github.com/MicrobeLab/scCulturePrec-data).

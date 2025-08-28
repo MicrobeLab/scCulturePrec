@@ -120,4 +120,4 @@ The module operates in prediction mode by default. To switch to training mode, u
 
 Bugs and difficulties in using `scCulturePrec` are welcome on [the issue tracker](https://github.com/MicrobeLab/scCulturePrec/issues).
 
-Example data sets and models are available [here](https://github.com/MicrobeLab/scCulturePrec-data).
+Related data sets, pre-trained model weights, and test files are available [here](https://github.com/MicrobeLab/scCulturePrec-data).

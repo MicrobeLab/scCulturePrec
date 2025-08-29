@@ -270,7 +270,7 @@ def elastic_net(fn_pos, fn_neg, output_model):
     auc = roc_auc_score(y_test, predictions[:, 1])
     print("EN AUC:", auc)
     joblib.dump(model, output_model)
-    df = pd.DataFrame({'y_true': y_test, 'y_pred_prob': predictions[:, 1]})
+    df = pd.DataFrame({'true': y_test, 'pred_prob': predictions[:, 1]})
     df.to_csv(output_model.replace('.pkl', '')+'-pred.csv', index=False)
 
 
@@ -278,7 +278,7 @@ def elastic_net_pred(model_pkl, dist_txt, output_csv):
     outside_array = np.genfromtxt(dist_txt, delimiter='\t')
     model = joblib.load(model_pkl)
     predictions = model.predict_proba(outside_array)
-    df = pd.DataFrame({'y_pred_prob': predictions[:, 1]})
+    df = pd.DataFrame({'pred_prob': predictions[:, 1]})
     df.to_csv(output_csv, index=False)
 
 

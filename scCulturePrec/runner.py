@@ -63,16 +63,16 @@ def main():
     		elastic_net_pred(model_pkl=args.model_file, dist_txt=args.dist_new, output_csv=args.pred_out)
     elif args.command == 'dl-model':
         cuda = torch.cuda.is_available()
-        if in_type == 'morphol':
+        if args.in_type == 'morphol':
             model = SiameseFTT(d_numerical=args.num_morphol, categories=None, token_bias=True, 
                     n_layers=1, d_token=200, n_heads=8, d_ffn_factor=2, 
                     attention_dropout=0.0, ffn_dropout=0.0, residual_dropout=0.0, 
                     activation='reglu', prenormalization=True, initialization='kaiming', kv_compression=None, 
                     kv_compression_sharing=None, dim_before=200, embedding_size=args.embed_size_morphol)  
-        elif in_type == 'spectra':
+        elif args.in_type == 'spectra':
             model = SiameseResNet(hidden_sizes=[100]*6, num_blocks=[2]*6, 
                     in_channels=64, embedding_size=args.embed_size_spectra, dim_before=7600)  
-        elif in_type == 'both':
+        elif args.in_type == 'both':
             model = SiameseHybrid(num_morphol=args.num_morphol, 
                 embed_size_morphol=args.embed_size_morphol, embed_size_spectra=args.embed_size_spectra, 
                 dim_before_morphol=200, dim_before_spectra=7600)

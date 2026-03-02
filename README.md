@@ -27,14 +27,19 @@ The **scCulturePrec** modelling pipeline comprises two parts: (1) extracting fea
 
 Use `scCulturePrec -h` to print help message:
 
-    usage: scCulturePrec [-h] {create-pair,elastic-net,dl-model} ...
+    usage: scCulturePrec [-h] {create-pair,elastic-net,dl-model,shap-analysis} ...
+
+    Usage of scCulturePrec.
 
     positional arguments:
-      {create-pair,elastic-net,dl-model}
+      {create-pair,elastic-net,dl-model,shap-analysis}
         create-pair         Create paired-samples for training
         elastic-net         Elastic net for distances to reference
-        dl-model            Siamese network: training, encoding feature vectors,
-                            matching (default)
+        dl-model            Siamese network: training, encoding feature vectors, matching (default)
+        shap-analysis       SHAP analysis for feature importance
+
+    options:
+      -h, --help            show this help message and exit
 
 ### Generation of Positive and Negative Sample Pairs for Training
 
@@ -116,8 +121,28 @@ Use `scCulturePrec elastic-net -h` to print help message:
 
 The module operates in prediction mode by default. To switch to training mode, use the `--train` option. Input distance files contain tables of distances between new samples and reference samples, formatted as `[number_of_new_samples, number_of_reference_samples]`.
 
+### SHAP Analysis for Feature Importance
+
+Use `scCulturePrec shap-analysis -h` to print help message:
+
+    usage: scCulturePrec shap-analysis [-h] [--bg BG] [--train TRAIN]
+                                       [--test TEST] [--weight WEIGHT]
+                                       [--out OUT]
+
+    options arguments:
+      -h, --help       show this help message and exit
+      --bg BG          Background samples (.npy)
+      --train TRAIN    Training samples (.npy)
+      --test TEST      Test samples (.npy)
+      --weight WEIGHT  /path/to/weights.pth
+      --out OUT        Output prefix
+
 ## Other Resources
 
 Bugs and difficulties in using `scCulturePrec` are welcome on [the issue tracker](https://github.com/MicrobeLab/scCulturePrec/issues).
 
 Related data sets, pre-trained model weights, and test files are available [here](https://github.com/MicrobeLab/scCulturePrec-data).
+
+The workflow for morphological feature extraction and Raman spectral pre-processing is available [here](https://github.com/MicrobeLab/scCulturePrec-data).
+
+The code for Raman spectral fitting and molecular quantification analysis is available [here](https://github.com/MicrobeLab/raman-molecular-quantification).

@@ -23,6 +23,9 @@ The **scCulturePrec** modelling pipeline comprises two parts: (1) extracting fea
     conda activate scCulturePrec
     pip install -e .
 
+**Estimated Installation Time**
+On a computer with a stable internet connection, typical install time would be ~5–15 minutes. The majority of this time is spent by Conda resolving dependencies and downloading packages specified in `environment.yml`.
+
 ## Usage
 
 Use `scCulturePrec -h` to print help message:
